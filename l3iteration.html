@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Iteration</title>
+</head>
+
+<body>
+
+
+    <script type="text/javascript">
+
+        // => Array Call Back Method 
+        // forEach
+        // map 
+        // filter 
+        // find 
+        // reduce array confusion
+        // some  
+        // every 
+
+        // for(let x = 0 ; x < array.length ; x++){
+        //     console.log(array[x]);
+        // }
+
+        // for(let key in array){   // object
+        //     code to be executed
+        // }
+
+        // for(let value of array){  // array
+        //     code to be executed
+        // }
+
+        document.write("<h3>For Loop</h3>");
+        let mycolors = ["red", "green", "blue", "orange", "gray"];
+
+        for (let x = 0; x < mycolors.length; x++) {
+            document.write(mycolors[x] + "<br/>");
+        }
+
+        document.write("<h3>For In Loop</h3>"); // for object / array
+        let customers = {
+            name: "Aung Aung",
+            city: "Mandalay",
+            parent: "U Ba",
+            Phone: "012345678"
+        };
+        // console.log(customers);
+        // console.log(customers.name);
+        // console.log(customers['name']);
+
+        for (let key in customers) {
+            // console.log(key);
+            // console.log(customers[key]); // undefined
+            document.write(key + " = " + customers[key] + "<br/>");
+        }
+
+        const ourteams = ["Kyaw Kyaw", "aung aung", "maung maung", 'kaung kaung'];
+
+        for (idx in ourteams) {
+            // console.log(idx);
+            document.write("For in loop result = " + ourteams[idx] + "<br/>");
+        }
+
+        document.write('<h3>For Of Loop</h3>');
+
+        const members = ["aye aye", "lu lu", "nu nu", 'yu yu'];
+        for (let member of members) {
+            // console.log(members);
+            document.write("For in loop result = " + member + "<br/>");
+        }
+
+        document.write('<h3>for Each Loop</h3>');
+
+        const students = ["su su", "lu lu", "nu nu", "yu yu", "phu phu"];
+        students.forEach(student => {
+            console.log(student);
+            document.write("forEach loop result = " + student + "<br/>");
+        });
+
+        document.write("<br/>");
+
+        const colors = ["red", "green", "blue", "white", "black"];
+
+        colors.forEach((color, idx) => {
+            // console.log(`Index number is = ${idx} Color is = ${color}`);
+            document.write(`Index number is = ${idx} color is = ${color} <br/>`);
+        });
+
+        document.write('<h3>Map Loop</h3>');
+        
+        const employees = ["su su", "lu lu", "nu nu", "yu yu", "phu phu"];
+
+        employees.map(employee => {
+            // console.log(employee); //string
+            document.write("Map loop result = " + employee + "<br/>");
+        });
+
+        employees.map((employee,idx) => {
+            // console.log(`Index number is = ${idx} Color is = ${employee}`);
+            document.write(`Index number is = ${idx} employee is = ${employee} <br/>`);
+        });
+
+        const ladies = employees.map((employee,idx) => {
+            // return `Ms.${employee}`;
+            return `${++idx} Ms.${employee}`; // output array
+        });
+
+        console.log(ladies); // ['Ms.su su', 'Ms.lu lu', 'Ms.nu nu', 'Ms.yu yu', 'Ms.phu phu'] //array
+
+        const visitors = ["Ko sai", "m zaw naw", "june", "htet aung kyaw", "paing sis"];
+
+        const guys = visitors.map(visitor => `Ms.${visitor}`);
+        console.log(guys); // ['Ms.Ko sai', 'Ms.m zaw naw', 'Ms.june', 'Ms.htet aung kyaw', 'Ms.paing sis'] // output array
+
+        visitors.forEach(visitor => {
+            console.log(`forEach result = Ms.${visitor}`);//string 
+        })
+
+        // can't set !!! forEach not working
+        // const peoples = visitors.forEach(visitor=>{
+        //     return `Ms.${visitor}`;
+        // });
+
+        // console.log(peoples); // undefined
+
+        const employers = ["su su", "lu lu", "nu nu", "yu yu", "phu phu"];
+
+        const arrs1 = employees.map(employee => {
+            return employee;
+        });
+        console.log(arrs1);
+
+        const arrs2 = arrs1.filter(owner => {
+
+            if(owner === "nu nu"){
+                return false;
+            }else{
+                return true;
+            }
+        });
+        console.log(arrs2);
+
+        const owners = employers.map(employer => {
+            return employer;
+        }).filter(owner => {
+
+            // if(owner === "nu nu"){
+            //     return false;
+            // }else{
+            //     return true;
+            // }
+
+            if (owner === "nu nu") {
+                return false;
+            }
+            return true;
+        });
+
+        console.log(owners);
+
+        const firstnames = ["aung","kyaw","soe"];
+        const name1 = firstnames.map((firstname)=>{
+            return `${firstname} ko ko`;
+        });
+        console.log(name1); // array
+
+        const name2 = firstnames.map(firstname=>{
+            return `${firstname} hla`;
+        });
+        console.log(name2); // array
+
+        const name3 = firstnames.map(firstname=>`${firstname} lwin`);
+        console.log(name3); //array
+
+        const name4 = firstnames.map(()=>`aye aye`);
+        console.log(name4); // ['aye aye', 'aye aye', 'aye aye']
+
+        const sport = "bike";
+        const contestants = ["aung aung","kyaw kyaw","maung maung","tun tun","linn linn"];
+
+        const winners = contestants.map((contestant,idx)=>({
+            name : contestant,  
+            // game : sport,  // game : 'bike'
+            sport,            // sport : 'bike'
+            prize : ++idx
+        }));
+        console.log(winners);
+
+        document.write('<h3>Filter Loop</h3>');
+        const ages = [20,25,21,17,35,16.50,17,11,80,10,12,15,37];
+        const getover18 = ages.filter(age=>{
+            return age > 18;
+        });
+        // console.log(getover18);  // array return
+        document.write("Filter Result = " + getover18 + "<br/>");
+
+        const getover20 = ages.filter(age=>age >= 20);
+        document.write();
+        console.log(getover20);  // [20, 25, 21, 35, 80, 37]
+
+        document.write('<h3>Some</h3>');
+
+        // reduce() method calculate do
+        document.write('<h3>Reduce</h3>');
+        // mainarray.reduce(function(previousValue,currentValue,currentIndex,array()),initinalvlaue or additional value);
+
+        const amounts = [10,20,30];
+        const result = amounts.reduce((total,curr)=>{
+            total += curr;
+            return total;
+        },0);
+
+        console.log(result);  // 60
+        document.write(result);
+
+        const sumresult = amounts.reduce((total,curr)=>(total += curr),0).toFixed(2);
+        console.log(sumresult,typeof sumresult); // 60.00  string 
+
+        const numbers = [10,200,30,40,50,60,70,80,90,100,500,0];
+        const getresult = numbers.reduce((prev,curr)=>{
+            // if(curr > prev){
+            //     return curr;  // true
+            // }
+            // return prev  // false
+
+            if(curr < prev){
+                return curr;  // true
+            }
+            return prev  // false
+        },0);
+
+        console.log(getresult); //500   //0
+
+        // max     curr    return
+        // 10      10      10
+        // 10      200     200 
+        // 200     30      200 
+        // 200     40      200...
+        // 200     500     500
+        // 200     0       500
+
+        // Includes() return boolean
+        const animals = ['cat','dog','fish','owl','monkey',500,1000];
+        console.log(animals);
+        console.log(animals.includes('dog')); // true 
+        console.log(animals.includes('Dog')); // false casesensitive 
+        console.log(animals.includes('do')); // false casesensitive 
+        console.log(animals.includes('owl')); // true  
+        console.log(animals.includes(500)); // true 
+        console.log(animals.includes('1000')); // false casesensitive  
+
+        const articles = [
+            {
+                title : "this is new aritcle 1",
+                author : "U ba",
+                rating : 2.8,
+                types : ['book','ebook','cd']
+            },
+            {
+                title : "this is new aritcle 2",
+                author : "U hla",
+                rating : 4.3,
+                types : ['ebook','cd']
+            },
+            {
+                title : "this is new aritcle 3",
+                author : "Daw mya",
+                rating : 4.5,
+                types : ['book','ebook','cd']
+            },
+            {
+                title : "this is new aritcle 4",
+                author : "Daw pa",
+                rating : 3.1,
+                types : ['book','cd']
+            }
+        ];
+
+        const goodratings = articles.filter(article=>article.rating > 4);
+        console.log(goodratings);
+
+        const getbooks = articles.filter(article=>{
+            const result = article.types.includes('book');
+            return result;
+        });
+        console.log(getbooks);
+
+        // every() = filter() output array
+        // every() vs some() return boolean (every() all fix true)
+        // some() ka one pr yin true 
+        const boys = ['aung aung','kyaw kyaw','zin maung','soe naung'];
+        const checklength = boys.every(boy=>{
+            return boy.length === 9;
+        });
+        console.log(checklength); // true 
+
+        let firstletterwritten = boys.every(boy=>boy[0] === 'a');
+        console.log(firstletterwritten);  // false
+
+        let lastletterwritten = boys.every(boy=>boy[boy.length-1] === 'g');
+        console.log(lastletterwritten);  // false
+
+        let fstletterwritten = boys.some(boy=>boy[0] === 'a');
+        console.log(fstletterwritten);  // true
+
+        // 28SM
+
+    </script>
+</body>
+
+</html>
+
+<!-- 26AA -->

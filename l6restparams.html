@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rest Parameter / Rest Operator</title>
+</head>
+
+<body>
+
+
+    <script type="text/javascript">
+        // Rest Parameter (...)
+        // Note : can't set first and between 
+             // : can contain just one rest parameter
+        function city(val){
+            return val;
+        }
+
+        console.log(city()); // undefined 
+        console.log(city('Yangon'));  // Yangon 
+        console.log(city('Yangon','mandalay','bago'));  // Yangon 
+
+        function country(...vals){
+            return vals;
+        };
+
+        console.log(country('myanmar'));  // ['myanmar']
+        console.log(country('myanmar','thailand','indonesia')); // 3 ['myanmar','thailand','indonesia'];
+
+        function place(location,...vals){
+            // return location;  // chaung tar 
+            return vals;  //2 ['ngapali','Ngwesaung']
+        }
+
+        console.log(place('chaung tar','ngapali','Ngwesaung'));
+
+        let animal = new Function('...vals','return vals');
+        console.log(animal('cat','dog','fish')); // 3 ['cat','dog','fish']
+
+        // must be last formal parameter
+        function example(num1,num2,...num3){
+            console.log(num1,num2,num3);   
+        }
+
+        example(10,20,30,40,50,60);
+
+        function totalresult(...nums){
+            const total = nums.reduce((total,curr)=>total+curr,0);
+            return total;
+        }
+
+        console.log(totalresult(10,20,30,40,50));  // 150
+
+
+        function exampleone(num1,num2,num3){
+            console.log(num1,num2,num3);
+        }
+
+        exampleone(10,20,30,40,50); // 10 20 30
+
+        function exampletwo(num1,num2,...num3){
+            console.log(num1,num2,num3);
+        }
+
+        exampletwo(10,20,30,40,50); // (3)10 20 [30, 40, 50]
+
+        // error
+        // function examplethree(...num1,num2,num3){
+        //     console.log(num1,num2,num3);
+        // }
+
+        // examplethree(10,20,30,40,50); // Uncaught SyntaxError: Rest parameter must be last formal parameter
+
+        // error
+        // function examplethree(num1,...num2,num3){
+        //     console.log(num1,num2,num3);
+        // }
+
+        // examplethree(10,20,30,40,50); // Uncaught SyntaxError: Rest parameter must be last formal parameter
+
+        function getinfo(first,last,...city){
+            console.log("This is firstname = " , first);
+            console.log("This is last = " , last);
+            console.log("This is city = " , city);
+        }
+
+        // getinfo();
+        getinfo('aung','kyaw','yangon'); // This is firstname = aung // This is firstname = kyaw // This is city = ['yangon']  
+        getinfo('aung','kyaw','yangon','myanmar','asia'); // This is firstname = aung // This is firstname = kyaw // This is city = ['yangon','myanmar','asia']  
+
+    </script>
+</body>
+
+</html>
+
+<!-- 17RP-->

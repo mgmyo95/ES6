@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Object Leteral</title>
+</head>
+
+<body>
+
+
+    <script type="text/javascript">
+
+        // => object 
+        let person1 = {
+            name: "Aung Aung",
+            age: 20,
+            gender: "male"
+        };
+        console.log(person1);
+        console.log(person1['name']);
+
+        person1.city = "Yangon";
+        console.log(person1);
+
+        let person2 = person1; // clone 
+        console.log(person2);
+
+        person2.hobby = "sport";
+        person2.age = 30;
+        console.log(person1, person2);
+
+        // Object 
+        // freeze() class object 
+        // use freeze() , you can't append
+        let person3 = Object.freeze(person1);
+        console.log(person3);
+
+        person3.phone = "0911111";
+        person2.age = 40;
+        console.log(person1);
+        console.log(person2);
+        console.log(person3);
+        console.log(person3['name']);
+
+        const employees = {
+            name: "yu yu",
+            position: "graphic designer",
+            salary: 500000
+        };
+
+        let { name, salary } = employees;
+        console.log(name);
+        console.log(salary);
+
+        const employers = {
+            fullname: "aye aye",
+            company: "abc col.,ltd",
+            location: "Yangon",
+            posts: {
+                officestaff: {
+                    gender: "female",
+                    salary: 600000
+                },
+                driver: {
+                    gender: "male",
+                    salary: 300000
+                }
+            },
+            links: {
+                social: {
+                    gmail: "admin@abc.com",
+                    facebook: "https://facebook.com/abccompany"
+                }
+            }
+        };
+
+        console.log(employers);
+        const { fullname, company, posts, links } = employers;
+        console.log(fullname, company, posts);
+        console.log(posts['officestaff']['gender'], posts['officestaff']['salary']);  // female , 500000
+        console.log(posts['driver']['gender'], posts['driver']['salary']); // male , 300000
+        // console.log(links['social']['gmail'], links['social'].facebook);
+
+        // const {gmail,facebook} = employers.links.social;
+        // console.log(gmail);
+        // console.log(facebook);
+
+        // alias
+        const {gmail:letter,facebook:status} = employers.links.social;
+        // console.log(gmail);  // error 
+        // console.log(facebook);  // error 
+        console.log(letter);  // admin@abc.com
+        console.log(status);  
+
+        // {} call block
+        const configs = {
+            width : 100,
+            color : "steelblue"
+        };
+
+        const {
+            width,
+            height = 500,
+            color = "black",
+            margin = "10px"} = configs;
+
+        console.log(width);  // 100
+        console.log(color);  // steelblue
+        console.log(height); // 500
+        console.log(margin);  // 10px 
+
+        const {bg:background="white",p:padding="10px",flex:flexbox} = {bg:"black"};
+
+        // console.log(bg); // error
+        // console.log(p); // error
+        console.log(background);
+        console.log(padding);
+
+        // console.log(flex); // error
+        console.log(flexbox); // undefined
+
+        function exchangerage(amount){
+            const rate = {
+                mmk : amount * 3000,
+                thb : amount * 40,
+                sgd : amount * 1.35
+            }
+
+            return rate;
+        }
+
+        const currency = exchangerage(10); // 10usd 
+        console.log(currency);
+        console.log(currency.mmk); // 30000
+        console.log(currency.thb); // 400 
+
+        const {mmk,thb,sgd} = exchangerage(10);
+        console.log(mmk);  // 30000
+        console.log(thb);  // 400
+        console.log(sgd);  // 13.5
+
+        let obj = {
+            total : 1000,
+            tax : 5,
+            servicefee : 100
+        };
+
+        function grandtotal1(objval){
+            const result = objval.total+(objval.total/objval.tax)+objval.servicefee;
+            return result;
+        }
+
+        console.log(grandtotal1(obj));  // 1300
+        // console.log(grandtotal1());  // erro 
+
+        function grandtotal2(objval={}){
+            const result = objval.total+(objval.total/objval.tax)+objval.servicefee;
+            return result;
+        }
+
+        console.log(grandtotal2());  // NaN
+
+        // const {total,tax,servicefee} = {total:200,tax:5,servicefee:100};
+        function grandtotal3({total,tax,servicefee}){
+            const result = total+(total/tax)+servicefee;
+            return result;
+        }
+
+        // console.log(grandtotal3(obj));  // 1300
+        // console.log(grandtotal2({total:2000,tax:5,servicefee:100}));  // 2500  
+        // console.log(grandtotal3({total:2000,servicefee:100}));  // NaN
+        
+        function grandtotal4({total=1000,tax=5,servicefee=100}){
+            const result = total+(total/tax)+servicefee;
+            return result;
+        }
+
+        console.log(grandtotal4({total:3000,tax:5,servicefee:100}));
+        console.log(grandtotal4({total:3000,servicefee:200})); // 1400
+        console.log(grandtotal4({servicefee:200}));  // 1400
+        console.log(grandtotal4({})); // 1300
+
+        function grandtotal5({total=1000,tax=5,servicefee=100}={}){
+            const result = total+(total/tax)+servicefee;
+            return result;
+        }
+
+        console.log(grandtotal5({total:3000,tax:5,servicefee:100}));
+        console.log(grandtotal5({total:3000,servicefee:200})); // 1400
+        console.log(grandtotal5()); // 1300
+
+        
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
+
+<!-- 10OB -->

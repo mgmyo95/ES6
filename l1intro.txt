@@ -1,0 +1,145 @@
+JAVASCRIPT / ECMASCRIPT / ES2015 / ES2016 / Modern Javascript 
+1995 
+
+=> ECMA 
+Ecma International (Europen Computer Manufactures Association)
+
+1997 - ES1 
+1998 - ES2 
+1999 - ES3 
+2000 - ES5 
+2015 - ES6 (CORE PROGRAMMING LANGUAGE)
+2016 - ES7 
+2017 - ES8 
+2018 - ES9 
+2019 - ES10
+
+https://ecma-international.org/ 
+
+ES6(let & const)
+var 
+    - Global and Function Scope 
+    - Value can change 
+    - var shouldn't be used in ES6
+
+let 
+    - Block Scope 
+    - Value can change
+
+const 
+    - Block Scope 
+    - Value can't change
+
+
+------------------------------------- 
+
+=> Exercise 
+var x = 100;
+    x = 200;
+var x = 300;
+console.log(x);  // 300
+
+let y = 100;
+    y = 200
+let y = 300;
+console.log(y);  // Uncaught SyntaxError: Identifier 'y' has already been declared
+
+const p = 100;
+      p = 200;
+const p = 300;
+console.log(p);  // Uncaught TypeError: Assignment to constant variable.
+                 //? Uncaught SyntaxError: Identifier 'p' has already been declared
+
+if(true){
+    //? Global & Function Scope 
+    var num1 = 100;
+
+    //? block Scope 
+    let num2 = 200;
+    const num3 = 300;
+}
+
+console.log(num1); // 100
+
+console.log(num2); // 200  // num2 is not defined
+
+console.log(num3); // 100  // num3 is not defined
+
+function printone(){
+    for(var i = 0 ; i < 5 ; i++){
+        console.log(i);
+    }
+    console.log("i value is = " , i);
+}
+
+printone();  // 0 1 2 3 4 
+
+function printtwo(){
+    for(let q = 0 ; q < 5 ; q++){
+        console.log(q);
+    }
+    console.log("q value is = " , q);
+}
+
+printtwo();  // Uncaught ReferenceError : q is not defined
+
+function printthree(){
+    for(const b = 0 ; b < 5 ; b++){
+        console.log(b);
+    }
+    console.log("b value is = " , b);
+}
+
+printthree();  // Assignment to constant variable. 
+
+const arrcolors = ["red","green","blue"];
+console.log(arrcolors);
+arrcolors.push("black","white","gray");
+console.log(arrcolors); // ["red","green","blue","black","white","gray"];
+
+const person = {
+    name : "Aung Aung",
+    bio : function(){
+        console.log("This is bio");
+    },
+    contact:function(){
+        console.log("This is contact")
+    }
+};
+
+console.log(person);
+console.log(person.name); // Dot Notation for object Properties 
+console.log(person['name']); // Bracket Notation for object Properties 
+console.log(person.bio());
+console.log(person.contact());
+
+
+const person = {
+    name : "Aung Aung",
+    bio : function(){
+        console.log("This is bio");
+    },
+    contact(){
+        console.log("This is contact")
+    }
+};
+
+console.log(person);
+console.log(person.name); // Dot Notation for object Properties 
+console.log(person['name']); // Bracket Notation for object Properties 
+console.log(person.bio());
+console.log(person.contact());
+
+person.name = "Maung Maung";
+console.log(person.name);  // Maung Maung
+console.log(person["name"]);  // Maung Maung
+
+const othername = "name";
+person["name"] = "Kyaw Kyaw";
+person[othername] = "kyaw kyaw";
+
+console.log(person.name);  // Kyaw Kyaw
+console.log(person["name"]);  // Kyaw Kyaw
+
+
+console.log(person["bio()"]);  // error 

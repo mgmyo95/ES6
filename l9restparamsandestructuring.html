@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rest </title>
+	</head>
+	<body>
+		
+
+
+		<script type="text/javascript">
+			// => Array Destructing 
+			const countries = ["Myanmar","Thailand","Sarilanka","Indonesia"];
+			console.log(countries[0],countries[1],countries[2],countries[3],);
+
+			const [mm,th,skl,indo] = countries;
+			console.log(mm,th,skl,indo);
+
+			const [,country1,,country4] = countries;
+			console.log(country1);
+			console.log(country4);
+
+			// => Destructing Assignment 
+
+			const [flat,...coin] = countries;
+			console.log(flat);  // Myanmar
+			console.log(coin);  // ['Thailand', 'Sarilanka', 'Indonesia']
+
+			// => Object Destructing 
+			const persons = {
+				firstname : "Honey Nway",
+				lastname : "Oo",
+				age : 22,
+				gender : "Female",
+				hascar : true,
+				city : "Yangon",
+				country : "Myanmar"
+			};
+
+			console.log(persons.firstname,persons.lastname,persons.gender,persons.city);
+
+			const {firstname,lastname,city} = persons;
+			console.log(firstname,lastname,city);
+
+			const {gender:sex,age:old} = persons;
+			// console.log(gender,age);  //Uncaught ReferenceError: gender is not defined
+
+			console.log(sex,old);   // Female 22 
+
+			const {country,hascar,...other} = persons;
+			console.log(country);  // Myanmar 
+			console.log(hascar);   // true 
+			console.log(other);    // {firstname: 'Honey Nway', lastname: 'Oo', age: 22, gender: 'Female', city: 'Yangon'} 
+
+			let employes = [
+				{
+					firstname : 'Hla Nu',
+					lastname : 'Htun'
+				},
+				(nickname)=>{
+					return `You can call me ${nickname}`
+				}
+			];
+
+			console.log(employes);
+			console.log(employes[0]);
+			console.log(employes[1]('Ma Ma'));
+
+			let [nickname,setname] = employes;
+
+			console.log(nickname);  // {firstname: 'Hla Nu', lastname: 'Htun'}
+			console.log(nickname.firstname,nickname.lastname);  // Hla Nu Htun
+			console.log(setname('Nu Nu')); // You can call me Nu Nu
+
+			// => Nusted Destructuring 
+			const staffs = [
+				{
+					name : "Aung Aung",
+					position : "representation",
+					department : "sales",
+					salary : 200000
+				},
+				{
+					name : "Tun Tun",
+					position : "supervisor",
+					department : "sales",
+					salary : 300000
+				},
+				{
+					name : "Su Su",
+					position : "Manager",
+					department : "sales",
+					salary : 500000
+				},
+				{
+					name : "Nu Nu",
+					position : "accountant",
+					department : "sales",
+					salary : 250000
+				},
+				{
+					name : "Yu Yu",
+					position : "cfo",
+					department : "finance",
+					salary : 700000
+				}
+			]; 
+
+			// let {name} = staffs; // undefined 
+
+			// let [name] = staffs; // {name: 'Aung Aung', position: 'representation', department: 'sales', salary: 200000}
+			// const [{name}] = staffs;  // Aung Aung Nusted Destructuring 
+			// const [,,{name}] = staffs;  // Su Su
+			// const [,,,{name}] = staffs; // Nu Nu
+			console.log(name);
+
+			const [,,,{position:title}] = staffs;
+			// console.log(position);  // Uncaught ReferenceError: position is not defined
+			console.log(title); // accountant 
+
+			const [,{salary},,{department}] = staffs;
+			console.log(salary);  // 300000
+			console.log(department);  // department
+			
+			// 8ND
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Argument Object</title>
+</head>
+
+<body>
+
+    
+
+    <script type="text/javascript">
+
+        // Argument Object
+
+        //Note : Arguments Object can't setin arrow function
+        //      this keyword can't setin arrow function
+
+        function getname(first, last) {
+            console.log(first, last);
+        };
+
+        getname("aung", "kyaw"); // aung kyaw 
+
+        function getfullname(first, last) {
+            console.log(arguments); // Arguments(2) ['aung', 'kyaw', callee: ƒ, Symbol(Symbol.iterator): ƒ]
+            console.log(typeof arguments);  // object 
+            console.log(arguments[0]);  // aung
+            console.log(arguments[1]);  // kyaw
+        }
+        getfullname('aung','kyaw');
+
+        function getcountry(){
+            console.log(arguments);
+            console.log(arguments[0]);
+        }
+
+        getcountry();
+        getcountry('Thailand');
+
+        // Error
+        // const getcity = ()=>{
+        //     console.log(arguments);
+        // };
+
+        // getcity(); // l8arugmentobject.html:40 Uncaught ReferenceError: arguments is not defined
+        // gecity('Indonesia') // l8arugmentobject.html:44 Uncaught ReferenceError: gecity is not defined
+
+        function getnumber(){
+            // console.log(arguments);
+            let result = 0;
+            for(let val of arguments){
+                // console.log(val);
+                result += val;
+            }
+
+            return result;
+        }
+
+        console.log(getnumber(10,20,30,40,50));  // 150
+
+        const amounts = [10,20,30,40,50];
+        function totalresult(){
+            // console.log(arguments);
+            let total = 0;
+            for(let x = 0 ; x < arguments.length ; x++){
+                total += arguments[x];
+            }
+            return total;
+        }
+        console.log(totalresult(10,20,30,40,50)); // 150
+        console.log(totalresult(...amounts)); // 150 
+        console.log(totalresult(...[10,20,30,40,50])); // 150
+
+        // error
+        // function sumresult(){
+        //     let sum = arguments.reduce((total,curr)=>total+=curr,0);
+        //     return sum;
+        // }
+
+        // console.log(sumresult(10,20,30,40,50));  // array
+
+        function sumresult(){
+            let sum = Array.from(arguments);
+            let result = sum.reduce((total,curr)=>total+=curr,0);
+            return result;
+        }
+
+        console.log(sumresult(10,20,30,40,50));  // 150
+
+        
+
+
+    </script>
+</body>
+
+</html>
+
+<!-- 17RP-->
+<!-- 24AO -->
+<!-- 11AO -->

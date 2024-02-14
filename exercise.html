@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Exercise</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    /* .container{
+        width:100%;
+        padding:60px 0;
+
+        display:grid;
+        grid-template-columns:repeat(4 , 1fr);
+        place-items:center;
+        gap:10px;
+        row-gap:40px;
+
+        & div{
+          width:min(98%,300px);
+          height:250px;
+          background:coral;
+        }
+
+      }
+
+      @media(width < 1200px){
+        .container{
+          grid-template-columns:repeat(3 , 1fr);
+        }
+      }
+
+      @media(width < 977px){
+        .container{
+          grid-template-columns:repeat(2 , 1fr);
+        }
+      }
+
+      @media(width < 520px){
+        .container{
+          grid-template-columns:repeat(1 , 1fr);
+        }
+      } */
+
+    /* .container{
+        width:100%;
+        padding:50px 0;
+
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+        gap:15px;
+        place-items:center;
+
+        & div{
+          width:min(98%,300px);
+          height:250px;
+          background:coral;
+        }
+      } */
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+
+
+  <script type="text/javascript">
+
+    const students = {
+      name: "aung kyaw",
+      age: 15,
+      subject: ['myanmar', 'english', 'math', 'chemistry', 'physic', 'biology']
+    };
+
+    function myrender(courses){
+      return `
+        ${courses.map(course=>`<li>${course}</li>`).join("")}
+      `;
+    }
+
+    let htmlone = `
+        <h3>${students.name}</h3>
+        <h5>${students.age}</h5>
+
+        ${myrender(students.subject)}
+    `;
+
+    document.write(htmlone)
+
+
+  </script>
+</body>
+
+</html>

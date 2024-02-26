@@ -147,7 +147,28 @@
         console.log(customers);
       
 
+        const keyassign = (obj,key,val)=>{
 
+            const getobj = obj;
+            getobj[key] = val;
+            console.log(getobj);  // {name: 'Tun Tun', gender: 'Male', age: 22, hascar: true, tel: '0123456', …}
+
+            const takeobj = {
+                ...obj
+            };
+            takeobj[key] = val;
+            console.log(takeobj);
+
+            const setobj = {
+                ...obj,
+                [key] : val
+            };
+            console.log(setobj);  // 
+// {name: 'Tun Tun', gender: 'Male', age: 22, hascar: true, tel: '0123456', …}
+
+        };
+
+        keyassign(customers,"job","Developer");
 
 
     </script>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Set</title>
+	</head>
+	<body>
+		
+
+
+	<script type="text/javascript">
+
+		const info = {
+			name : 'su su',
+			age : 20,
+			city : "yangon"
+		};
+		console.log(info);
+		console.log(typeof info); // object 
+		console.log(info.size); // undefined
+
+		var names = new Set();
+		console.log(names);
+		console.log(typeof names);   // object 
+
+		// .add();  method()
+		names.add("aung aung");
+		names.add("kyaw kyaw");
+		names.add('yu yu').add('nu nu').add('yu par');
+		console.log(names);
+		console.log(names.length);  // undefined lenght ka array method mhr use 
+		console.log(names.size);  // 5
+
+		console.log(names[0]); // undefined
+
+		names.forEach(name=>{
+			console.log(name);
+		});
+
+		console.log(names[Symbol.iterator]());  // SetIterator
+		console.log(names[Symbol.iterator]().next()); // {value: 'aung aung', done: false}
+
+		console.log(names[Symbol.iterator]().next().value);  // aung aung
+		console.log(names[Symbol.iterator]().next().value);  // aung aung
+		console.log(names[Symbol.iterator]().next().value);  // aung aung
+
+		const getnames = names[Symbol.iterator]();
+		console.log(getnames);   // SetIterator {aung aung,'kyaw kyaw','yu yu','nu nu','yu par'}
+		console.log(getnames.next().value);  // aung aung
+		console.log(getnames.next().value);	 // kyaw kyaw
+		console.log(getnames.next().value);	 // yu yu
+		console.log(getnames.next().value);  // nu nu 
+		console.log(getnames.next().value);  // yu par
+		console.log(getnames.next().value);  // undefined
+
+		let students = new Set();
+		students.add('hla hla').add('mya mya').add('ywal ywal');
+		students.add('nilar').add('hla hla').add('Ywal Ywal');
+		console.log(students);
+		console.log(students.size);  // 5
+
+		console.log(students.has('nilar'));  // true
+		console.log(students.has('Nilar'));  // false
+		console.log(students.has('hla'));  // false
+
+		console.log(students);  // {'hla hla', 'mya mya', 'ywal ywal', 'nilar', 'Ywal Ywal'}
+		console.log(students.size);  // 5 
+		
+		console.log(students.delete('mya mya')); // true
+		console.log(students);  // {'hla hla', 'mya mya', 'ywal ywal', 'nilar', 'Ywal Ywal'}
+		console.log(students.size);  // 5 
+
+		students.clear();
+		console.log(students);  // Set(0) {size: 0}
+		console.log(students.size);  // 0
+
+
+		// => Set() to Array 
+		const customers = ["yu yu","nu nu","ma ma"];
+		console.log(customers);	
+
+		const vipcustomers = new Set(customers);
+		console.log(vipcustomers);
+
+		// Method 1
+		const vipmembers = Array.from(vipcustomers);
+		console.log(vipmembers);  //  ['yu yu', 'nu nu', 'ma ma']
+
+		// Method 2	
+		const bigcustomers = [...vipcustomers];
+		console.log(bigcustomers);  // ['yu yu', 'nu nu', 'ma ma']
+		console.log(bigcustomers.length);  // 3 
+		console.log(bigcustomers[0]);
+
+
+	</script>
+	</body>
+</html>

@@ -6,9 +6,13 @@
   <style type="text/css">
     * {
       margin: 0;
-      padding: 0;
+      padding:0;
       box-sizing: border-box;
       font-family: sans-serif;
+    }
+
+    body{
+      padding-inline:10px;
     }
 
     /* .container{
@@ -82,29 +86,35 @@
 
   <script type="text/javascript">
 
+     
     const students = {
-      name: "aung kyaw",
-      age: 15,
-      subject: ['myanmar', 'english', 'math', 'chemistry', 'physic', 'biology']      
+        name : "aung kyaw",
+        age : 15,
+        subject : ["myanmar",'english','math','chemistry','physic','biology']
     };
 
     function myrender(courses){
-      return `
-        ${courses.map(course=>`<li>${course}</li>`).join("")}
-      `;
+        return `
+           <ul>
+            ${courses.map(course=>`<li>${course}</li>`).join("")}
+           </ul>
+        `;
     }
 
-    let htmlone = `
-        <h3>${students.name}</h3>
-        <h5>${students.age}</h5>
-
-        ${myrender(students.subject)}
+    const htmltwo = `
+        <div>
+            <h3>${students.name}</h3>
+            <p>${students.age}</p>
+            ${myrender(students.subject)}
+        </div>
     `;
-
-    document.write(htmlone)
+      
+    document.write(htmltwo);
+      
 
 
   </script>
+
 </body>
 
 </html>

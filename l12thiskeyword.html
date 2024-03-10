@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>This keyword</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// Fat Arrow Function ( => Fat Arrow ) 
+		// Lexical Scope (this)  
+
+		// Name less Regulare function = this work 
+		// Name less Arrow Function = this not working 
+		
+		// Callback Regular Function = this not working 
+		// Callback Arrow Function = this work 
+
+		// window is Global Scope Object in Nodejs
+		function greeting(){
+			console.log("Good Night");
+			console.log(this);
+		}
+		greeting(); // Good Night Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+		const sayhi = function(){
+			console.log(this);
+		};
+
+		sayhi(); // Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+		const hifi = ()=>{
+			console.log(this);
+		};
+		hifi(); // Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+		// let and const are not added value no to window Global Scope 
+		// => Terminal type var name = "aun gaung"
+		// => Terminal type name; // aung aung
+		// => Terminal type window.name;
+		// => Terminal type window; (expend windows > name(yes))
+
+		// => Terminal type let name = "aye aye"
+		// => Terminal type name; // aye aye
+		// => Terminal type window.name;
+		// => Terminal type window; (expend windows > name(no))
+
+		// => Terminal type const name = "thiha"
+		// => Terminal type name; // thiha
+		// => Terminal type window.name;
+		// => Terminal type window; (expend windows > name(no))
+
+		// => Terminal type var gender = "male"
+		// => Terminal type gender; male // 
+		// => Terminal type window.gender; // male
+		// => Terminal type window; (expend windows > name(yes))
+
+		// => Terminal type let city = "yangon"
+		// => Terminal type city; yango // undefined
+		// => Terminal type window; (expend windows > name(yes))
+
+
+		// => Terminal type	 var = "mandalay"
+		// => Terminal type city; yango // undefined
+		// => Terminal type window; (expend windows > name(yes))
+
+		const items = {
+			product : "iphone 15",
+			price : 2000,
+			info : function(){
+				return `${this.product} Price is base on ${this.price} USD`;
+			},
+
+			discount : ()=>{
+				return `Use ${this.price} USD for ${this.product}! Get 20% cash back`;
+			}
+		};
+		console.log(items);
+		console.log(items.info());
+		console.log(items.discount());  // nameless arrow this is not working 
+
+		const group = {
+			members : ["aung aung","su su"],
+			groupname : "Frontend Designer",
+			groupmembers : ()=>{
+				console.log(`There are 2 members on this ${this.groupname} group.`);  // There are 2 members on this undefined group.
+			},
+
+			groupinfo:function(){
+				return this.members.map(member=>{
+					console.log(`${member} is on ${this.groupname}`); // aung aung is on Frontend Designer // sus u is on Frontend Designer
+				});
+			},
+
+			groupsay:function(){
+				return this.members.map(function(member){
+					console.log(`${member} is key person this ${this.groupname} group.`);  // su su is key person this undefined group.
+				});
+			}
+
+		};
+
+		console.log(group);
+		group.groupmembers();
+		group.groupinfo();
+		group.groupsay();
+
+		// this ka object ka key ko call
+
+		function createitem(inventory) {
+			return {
+				// key : value
+				// inventory : inventory
+				inventory,
+				itemvalue: function () {
+					return this.inventory.reduce((total, curr) => {
+						total += curr.price;
+						return total;
+					}, 0);
+				}
+			}
+		}
+
+		const inventory = [
+			{ title: "Redbull", price: 1500 },
+			{ title: "Sponsor", price: 1000 }
+		];
+
+		const getresult = createitem(inventory);
+		console.log(getresult);
+		console.log(getresult.itemvalue());  // 2500
+
+
+	</script>
+</body>
+
+</html>

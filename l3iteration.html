@@ -306,6 +306,60 @@
 
         // 28SM
 
+        document.write("<h3>FIND() Method</h3>");
+
+        const users = [
+            {name:"aung aung",age:20},
+            {name:"kyaw kyaw",age:21},
+            {name:"tun tun",age:22},
+            {name:"zaw zaw",age:23},
+            {name:"linn  linn",age:24}
+        ];
+
+        console.log(users);
+
+        const filterresult = users.filter(function(user){
+            return user.name === "zaw zaw";
+        });
+        console.log(filterresult);  // [{…}] array want to use filter()
+
+        const filterbyage = users.filter(function(user){
+            return user.age > 22;
+        });
+        console.log(filterbyage);  // [{…}] array want to use filter()
+
+        const findresult1 = users.find(function(user){
+            return user.name === "zaw zaw";
+        });
+
+        console.log(findresult1);  // [{…}, {…}]
+
+        const findbyage = users.find(function(user){
+            return user.age > 22;
+        });
+
+        console.log(findbyage);  // {name: 'zaw zaw', age: 23}
+        // find ka return only one time
+
+        const posts = [
+            {id:1,title:"New Post One"},
+            {id:2,title:"New Post Two"},
+            {id:3,title:"New Post Three"}
+        ];
+
+        const comment = {post_id:1,message:"nice post one",user_id:10};
+
+        function postcomment(posts,comment){
+            return posts.find(function(post){
+                return post.id === comment.post_id;
+            });
+        };
+        console.log(postcomment(posts,comment)); // {id: 1, title: 'New Post One'}
+
+        // 3TH
+
+
+
     </script>
 </body>
 

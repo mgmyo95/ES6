@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Object</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// Object Literals 
+		
+		const persons = {
+			// properties 
+			name : "aung aung",
+			age : 25,
+			address : {
+				street : "No.60 myitter street",
+				city : "Mandalay"
+			},
+
+			// method / member method 
+			job : function(){
+				console.log("Frontend Web Designer");
+			}
+		}
+
+		// We have 2way to create an object 
+		// (i) Factory Function 
+
+		// (ii) Constructor Function 
+
+		// (i) Factory Function 
+
+		function info(val){
+			// properties 
+			return {
+				name : val,
+				// method 
+				job : function(){
+					console.log(`${val} is Frontend Web Designer`);
+				}
+			}
+		}
+
+		const getinfo = info("aung aung");
+		console.log(getinfo);  // {name: 'aung aung', job: ƒ}
+		console.log(getinfo.name);
+		getinfo.job();
+
+		const getinfokeys = Object.keys(getinfo);
+		console.log(getinfokeys);
+
+		// (ii) Constructor Function (the first letter should be uppercase)
+		// Method 1
+		function Phone(brand,color,made){
+			// property ko this key word nt announcement
+			this.brand = brand;
+			this.like = function(){
+				console.log(`I love ${brand}`); //${brand} ka parameter ka ny direct yu
+			}
+			console.log("this value is",this); // Note : if you run (this) inside of a object , will get object base 
+			// Note :: if you run (this) inside of browser , will get window base (global object)
+		}
+
+		const getobj = new Phone("iphone15"); // new = {} Note :: when we use(new operator) will create new empty object
+		console.log(getobj);
+		console.log(getobj.brand); // iphone15 
+		getobj.like();
+
+		const getobjkey = Object.keys(getobj);
+		console.log(getobjkey);  //  ['brand', 'like']
+
+		console.log(Phone('sony'));  // this value is Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+		// => Adding Properties 
+		getobj.madeby = "China";
+		getobj["osversion"] = "IOS 18";
+		getobj.price = {"pro":1000,promax:1500};
+		getobj.colors = function(){
+			console.log("All color same price");
+		}
+		console.log(getobj);
+
+		// => Delete properties 
+		delete getobj.madeby;
+		console.log(getobj);
+
+		// (ii) Constructor Function (the first letter should be uppercase)
+		// Method 2 
+		// new Function(two paremeter exists)
+		const Computer = new Function("brand",`
+			this.brand = brand;
+			this.like = function(){
+				console.log("i love computer");
+			}
+		`);
+
+		const getobj2 = new Computer('Dell');
+		console.log(getobj2);
+		console.log(getobj2.brand); // Dell
+		console.log(typeof getobj2.brand); // string
+		console.log(getobj2.like());  // i love computer
+		console.warn(typeof getobj2.like()); // undefined 
+
+
+		// Note :: functions are Object in JS 
+		console.log(Phone.name); // Phone (name ka function ye name ko call)
+		console.log(Computer.name);  // anonymous (callback phyit lot)
+
+		console.log(Phone.length); // 3 ( it's mean 1 paremeter )
+		console.log(Computer.length); // 1
+
+		for(let key in getobj2){
+			// console.log(key,getobj2[key]); // brand like 
+
+			if(typeof getobj2[key] !== "function"){
+				console.log(key,getobj2[key]);
+			}
+		}
+
+		for(let key in getobj2) console.error(key);
+
+		// => Check properties name in functions 
+		// in keyword 
+		if("brand" in getobj2){
+			console.log("Yes , getobj2 has a brand key");
+		}else{
+			console.log("No");
+		}
+
+		// 10OBJ
+
+
+	</script>
+</body>
+
+</html>

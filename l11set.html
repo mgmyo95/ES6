@@ -36,7 +36,7 @@
 			console.log(name);
 		});
 
-		console.log(names[Symbol.iterator]());  // SetIterator
+		console.log(names[Symbol.iterator]());  // SetIterator  self invoke function
 		console.log(names[Symbol.iterator]().next()); // {value: 'aung aung', done: false}
 
 		console.log(names[Symbol.iterator]().next().value);  // aung aung
@@ -54,6 +54,7 @@
 
 		let students = new Set();
 		students.add('hla hla').add('mya mya').add('ywal ywal');
+		
 		students.add('nilar').add('hla hla').add('Ywal Ywal');
 		console.log(students);
 		console.log(students.size);  // 5

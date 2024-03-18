@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Getter & Setter</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+	// => Getter & Setter 
+
+	// Constructor Function 
+
+	function Item(){
+		// local variable call provate properties , can't access from outside
+		let price = {pro:1000,promax:1500}; // private properties 
+		let colors = function(){
+			return `All color are same price`;
+		}
+
+		let madeby = "China";
+
+		let designby = function(){
+			return `design by California`;
+		}
+
+		// Method 1 
+		this.getprice = function(){
+			return price;
+		}
+
+		this.getcolors = function(){
+			return colors();
+		}
+
+		// Method 2 
+		// this = Item
+		Object.defineProperty(this,'madeby',{
+			// get: is special keyword  in javascript
+			get:function(){
+				return madeby;
+			},
+			// set: is special keyword  in javascript
+			set:function(country){
+				// madeby = country;
+				if(country === 'myanmar'){
+					throw new Error('Invalid Country'); // system error
+				}else{
+					madeby = country;
+				}
+			}
+		});
+
+		Object.defineProperty(this,'designby',{
+			get:function(){
+				return designby();
+			}
+		})
+
+	}
+	
+	const getobj = new Item();  // item base = object base 
+	console.log(getobj);  // Item()
+
+	console.log(getobj.price); // undefined
+	console.log(getobj.getprice());  // {pro: 1000, promax: 1500}
+	console.log(getobj.getprice().pro);  // 1000 
+	console.log(getobj.getprice().promax);  // 1500 
+
+	// console.log(getobj.colors());  // error 
+	console.log(getobj.getcolors());  // All color are same price
+
+	console.log(getobj.madeby);  // China
+
+	
+	console.log(getobj.designby); // design by California
+
+	getobj.madeby = "Myanmar";
+	console.log(getobj.madeby);  // Myanmar 
+	
+
+	// getobj.madeby = "myanmar";
+	// console.log(getobj.madeby);  // Uncaught Error: Invalid Country
+
+
+	const data = {
+		brand : "Toyota",
+		made : "Japan",
+		price : 50000
+	};
+
+	function Vehicle(obj){
+		this.model = obj.brand;
+		this.color = "black";
+	}
+
+	const getobj2 = new Vehicle(data);
+	console.log(getobj2);  // Vehicle {model: 'Toyota'}
+	console.log(getobj2.model);  // Toyota
+	console.log(getobj2.color);  // black 
+
+	getobj2.sku = "Crown";
+	console.log(getobj2);  // Vehicle {model: 'Toyota', color: 'black', sku: 'Crown'}
+	console.log(getobj2.sku);  // Crown
+
+	// Method 2 
+	Vehicle.prototype.tax = function(){
+		return "35%";
+	};
+	console.log(getobj2);
+	console.log(getobj2.tax());  // 35%
+
+	// 17PT
+
+
+
+	</script>
+</body>
+
+</html>

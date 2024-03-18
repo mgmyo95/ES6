@@ -86,31 +86,44 @@
 
   <script type="text/javascript">
 
-     
-    const students = {
-        name : "aung kyaw",
-        age : 15,
-        subject : ["myanmar",'english','math','chemistry','physic','biology']
+    function greeting(){
+      console.log("Good Night");
+      console.log(this);
     };
 
-    function myrender(courses){
-        return `
-           <ul>
-            ${courses.map(course=>`<li>${course}</li>`).join("")}
-           </ul>
-        `;
-    }
+    greeting();
 
-    const htmltwo = `
-        <div>
-            <h3>${students.name}</h3>
-            <p>${students.age}</p>
-            ${myrender(students.subject)}
-        </div>
-    `;
-      
-    document.write(htmltwo);
-      
+    const sayhi = function(){
+      console.log(this);
+    };
+
+    sayhi();
+
+    const hifi = ()=>{
+      console.log(this);
+    };
+
+    hifi();
+
+    const items = {
+      product : "iphone 15",
+      price : 2000,
+      info : function(){
+        return `${this.product} Price is base on ${this.price} USD`;
+      },
+
+      discount : ()=>{
+        return `Use ${this.price} USED for ${this.product}! Get 20% cash back`;
+      }
+
+    };
+
+    console.log(items);
+    console.log(items.product);
+    console.log(items.price);
+    console.log(items.info());
+    console.log(items.discount());
+
 
 
   </script>

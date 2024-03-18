@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Local Variable in Constructor function</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+	// => Private Properties
+
+	// Constructor Function 
+	function Mobile(brand){
+		this.brand = brand;
+
+		// can declare local variable call private properties . can't access from outsize (they are stay in memory)
+		let price = {pro:100,promax:1500};  // private properties
+
+		let colors = function(){    // private properties
+			return ("All colors are same price");
+		};
+
+		this.like = function(){
+			let question = "Should i choose rosegold ? "; // these are local variable but this only avaliable for this.like function (they will gone when function die)
+			console.log(`I love ${this.brand} . becase i can spend USD ${price.pro} for new phone. BTW, ${colors()} ! ${question}`);
+		};
+
+	}
+
+	const getobj = new Mobile("Mi");
+	console.log(getobj);  // Mobile {brand : 'Mi', like : f} Note : local variables are hide 
+	console.log(getobj.brand); // Mi 
+	console.log(getobj.like()); // I love Mi . becase i can spend USD 100 for new phone. BTW, undefined ! Should i choose rosegold ? 
+
+	console.log(getobj.price); // undefined
+	// console.log(getobj.color); // error Uncaught TypeError : getobj.colors is not a function at l14localvariableinconstructorfunction 
+
+	
+
+	</script>
+</body>
+
+</html>

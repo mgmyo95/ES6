@@ -86,43 +86,65 @@
 
   <script type="text/javascript">
 
-    function greeting(){
-      console.log("Good Night");
-      console.log(this);
-    };
+    // => Getter & Setter 
+    // Constructor Function
 
-    greeting();
-
-    const sayhi = function(){
-      console.log(this);
-    };
-
-    sayhi();
-
-    const hifi = ()=>{
-      console.log(this);
-    };
-
-    hifi();
-
-    const items = {
-      product : "iphone 15",
-      price : 2000,
-      info : function(){
-        return `${this.product} Price is base on ${this.price} USD`;
-      },
-
-      discount : ()=>{
-        return `Use ${this.price} USED for ${this.product}! Get 20% cash back`;
+    function Item(){
+      let price = {pro:1000,promax:1500};
+      let colors = function(){
+        return `All color are same price`;
       }
 
+      let madeby = "China";
+      let designby = function(){
+        return `design by California`;
+      }
+
+      // Method 1 
+      this.getprice = function(){
+        return price;
+      }
+
+      this.getcolors = function(){
+        return colors();
+      }
+
+      // Method 2 
+      Object.defineProperty(this,'madeby',{
+
+        // get: is special keyword in javascript
+        get:function(){
+          return madeby;
+        },
+
+        set:function(country){
+          if(country === 'myanmar'){
+            throw new Error('Invalid Country');
+          }else{
+            madeby = country;
+          }
+        }
+
+      });
+
     };
 
-    console.log(items);
-    console.log(items.product);
-    console.log(items.price);
-    console.log(items.info());
-    console.log(items.discount());
+    const getobj = new Item();
+    console.log(getobj);
+    console.log(getobj.price);
+    console.log(getobj.getprice());
+    console.log(getobj.getprice().pro);
+    console.log(getobj.getprice().promax);
+
+    console.log(getobj.getcolors());
+    console.log(getobj.madeby);
+    console.log(getobj.designby); 
+
+    getobj.madeby = "Myanmar";
+    console.log(getobj.madeby);
+
+
+    
 
 
 

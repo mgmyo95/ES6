@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Prototype</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+
+		// Inheritance 
+		// (a) Object base (Object.prototype)
+		// (b) Array Base (Array.prototype)
+
+		// => In Terminal
+
+		let x = {};
+		console.log(x);  // Prototype (we can call objectBase it's directly or indirectly inherits forn object base)
+
+		let y = {};
+		console.log(y);// objectbase is the root of all objects in javascript
+
+		// Method 1
+		Object.getPrototypeOf(x);
+		Object.getPrototypeOf(y);
+
+		// Method 2
+		x.__proto__;
+		y.__proto__;
+		Object.getPrototypeOf(x) === Object.getPrototypeOf(y); // true
+
+		Object.getPrototypeOf(x) === x.__proto__;  // true
+
+		let arr = [];
+		console.log(arr);  // Note -> arr -> Prototype (arrayBase Object) -> objectBase 
+
+		 // => Property Descriptions 
+		 let person = {
+			name : "aung aung",
+			city : "yangon",
+			age : 20
+		 };
+		 console.log(person);
+
+		 let objectbase = Object.getPrototypeOf(person);
+		 console.log(objectbase);
+
+		 let descriptor = Object.getOwnPropertyDescriptor(objectbase,"toString");
+		 console.log(descriptor);  // {writable: true, enumerable: false, configurable: true, value: ƒ}
+
+		 Object.defineProperty(person,'name',{
+			// writable:true,  // {name: 'su su', city: 'yangon', age: 20, phone: '091233445'}
+			// writable:false  // {name: 'aung aung', city: 'yangon', age: 20, phone: '091233445'}
+			// configurable : true  // ['city', 'age', 'phone']
+			configurable : false //  ['name', 'city', 'age', 'phone'] 
+		 });
+
+		 // => writable
+		 person.name = "su su";
+		 person.phone = "091233445";
+		 console.log(person);
+		 console.log(Object.keys(person));
+
+		 // => configurable
+		 delete person.name;   
+		 console.log(person);
+		 console.log(Object.keys(person)); // ['city', 'age', 'phone']
+
+		 // => Instance Members vs Prototype Members 
+		 function Phone(brand){
+			// Instance Members
+			this.brand = brand;
+			this.like = function(){
+				// console.log(`I love ${brand}`); // get parameter
+				console.log(`I love ${this.brand}`);  // get property
+			}
+		 }
+
+		 const getobj = new Phone("iPhone");
+ 
+		 console.log(getobj);  // Phone {brand: 'iPhone', like: ƒ}
+		 console.log(getobj.brand); // iPhone
+		 console.log(getobj.like()); // I love iPhone
+
+		 const getobjkey = Object.keys(getobj);
+		 console.log(getobjkey);  //  ['brand', 'like']
+
+		 function Mobile(brand){
+			// Instance Members 
+			this.brand = brand;
+			this.color = function(){
+				let getlike = this.like();
+				console.log(`All colors are same price that is why ${getlike}`);
+			}
+
+			this.madeby = function(){
+				return "China";
+			}
+		 }
+
+		 // * error
+		//  Mobile.like = function(){
+		// 	return "I love Oppo Phone";
+		//  }
+
+		 
+
+		// => Prototype Members 
+		Mobile.prototype.like = function(){
+			// return "i love Sonyphone";  // i love Sonyphone 
+
+			// * error (get parameter)
+			// return `i love ${brand}`;
+
+			// (get property)
+			// return `i love ${this.brand}`;  // i love Samsung
+
+			let getmadeby = this.madeby();
+			return `i love ${this.brand},product by ${getmadeby}`; // i love Samsung,product by China
+
+		}
+
+		const getobj2 = new Mobile("Samsung");  // instantiate
+		 console.log(getobj2);  // Mobile {brand: 'Samsung', color: ƒ, madeby: ƒ}
+		 console.log(getobj2.brand); // Samsung
+		 console.log(getobj2.color());  // All colors are same price that is why I love miphone
+		 //  console.log(getobj2.madeby()); // China
+
+		 // instance Members 
+		//   getobj2.like = function(){
+		// 		// return "I love Oppo Phone";
+
+		// 		// * error 
+		// 		// return `i love ${brand}`;
+
+		// 		return `i love ${this.brand}`;  // i love sansumg
+		//  }
+
+		//  console.log(getobj2.like()); 
+
+		console.log(getobj2.like());  // i love Samsung
+
+		for(let key in getobj2) console.log(key); // brand color madeby like
+
+		if(getobj2.hasOwnProperty('madeby')){
+			console.log("Yes");  // Yes
+		}else{
+			console.log("No");
+		}
+
+		if(getobj2.hasOwnProperty('like')){
+			console.log("Yes");  
+		}else{
+			console.log("No");  // No
+		}
+		
+		// 24OP
+
+
+	</script>
+</body>
+
+</html>

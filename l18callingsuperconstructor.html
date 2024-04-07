@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Calling Constructor</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		function Vehicle(color){
+			this.color = color;
+		}
+		Vehicle.prototype.vancar = function(){
+			return `this is vancar`;
+		}
+
+		// call(two parameter) = superconstructor
+
+		function Bike(brand,colour){
+
+			this.colour = colour;  // red 
+			this.brand = brand;
+			// Vehicle(color);  // undefined
+			Vehicle.call(this,colour);
+			
+		}
+
+		
+
+		Bike.prototype = Object.create(Vehicle.prototype);
+		Bike.prototype.constructor = Bike;
+
+		// ***** Note :: must extend prototype member after inheritance 
+		Bike.prototype.ebike = function(){
+			return "this is ebike";
+		}
+
+		const vehicleobj = new Vehicle("black");
+		const bikeobj = new Bike('marin','red');
+
+		console.log(vehicleobj);
+		console.log(vehicleobj.color);
+		console.log(vehicleobj.vancar());
+
+		console.log(bikeobj);
+		console.log(bikeobj.brand);  // marin
+		console.log(bikeobj.ebike());  // "this is ebike"
+
+		console.log(bikeobj.colour);  // red 
+		console.log(bikeobj.color);  // red
+		console.log(bikeobj.vancar()); // this is vancar 
+
+
+		
+	
+	</script>
+</body>
+
+</html>

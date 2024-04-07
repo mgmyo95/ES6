@@ -160,6 +160,34 @@
 		
 		// 24OP
 
+		function Vehicle(brand){
+			this.brand = brand;  // properties
+			this.like = function(){
+				return `i like ${this.brand}`;
+			}
+		}
+
+		const getobj3 = new Vehicle("suzuki");
+		console.log(getobj3);
+		console.log(getobj3.brand); // suzuki
+		console.log(getobj3.like()); // i like suzuki
+
+		// Method 2 
+		const getobj4 = new Vehicle.prototype.constructor("mazda");
+		console.log(getobj4);
+		console.log(getobj4.brand); // suzuki
+		console.log(getobj4.like()); // i like suzuki
+
+		const getobj4keys = Object.keys(getobj4);
+		console.log(getobj4keys);
+
+		for(let key in getobj4) console.log(key); 
+		if(getobj4.hasOwnProperty('brand')){
+			console.log("Yes");
+		}else{
+			console.log("No");
+		}
+
 
 	</script>
 </body>

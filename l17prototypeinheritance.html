@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Prototype Inheritance</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+
+		function Vehicle(){
+
+		};
+
+		Vehicle.prototype.vancar = function(){
+			return "this is vancar";
+		}
+
+		function Bike(brand){
+			this.brand = brand;
+		}
+
+		// Note :: in terminal = new Bike.prototype.constructor(); // result Vehicle
+		Bike.prototype = Object.create(Vehicle.prototype);
+		// Note :: solved , in terminal = new bike.prototype.constructor(); // result Bike
+		Bike.prototype.constructor = Bike;
+
+		Bike.prototype.ebike = function(){
+			return "This is e bike";
+		}
+
+		const vehicleobj = new Vehicle();
+		console.log(vehicleobj);
+		console.log(vehicleobj.vancar());  // this is vancar
+
+		const bikeobj = new Bike("marin");
+		console.log(bikeobj);
+		console.log(bikeobj.brand);  // maring 
+		console.log(bikeobj.ebike()); // this is e bike 
+		console.log(bikeobj.vancar());
+
+
+		// console.log(vehicleobj.brand); // undefined 
+		// console.log(vehicleobj.ebike());  // Uncaught TypeError: vehicleobj.ebike is not a function
+
+
+
+	</script>
+</body>
+
+</html>

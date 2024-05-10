@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Method Overding by Prototype</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+
+		function Vehicle(color){
+			this.color = color;
+		}
+
+		Vehicle.prototype.vancar = function(){
+			return "this is vancar";
+		}
+
+		// custrom reseable function
+		function extend(Parent,Child){
+			Child.prototype = Object.create(Parent.prototype);
+			Child.prototype.constructor = Child;
+		}
+
+		function Bike(brand,colour){
+			Vehicle.call(this.colour);
+			this.brand = brand;
+		}
+
+		extend(Vehicle,Bike);
+
+		Bike.prototype.ebike = function(){
+			return "this is ebike";
+		}
+
+		Bike.prototype.vancar = function(){
+			return "this is evcar = method override by bike";
+		}
+
+		function Boat(brand,color){
+			Vehicle.call(this.color);
+			this.brand = brand;
+		}
+
+		extend(Vehicle,Boat);
+
+		Boat.prototype.eboat = function(){
+			return "this is eboat";
+		}
+
+
+		const vehicle = new Vehicle("black");
+		const bike = new Bike('marin','red');
+		const boat = new Boat('see ray','green');
+
+		console.log(vehicle);
+		console.log(vehicle.color);  // black
+		console.log(vehicle.vancar());  // this is vancar 
+
+		console.log(bike);
+		console.log(bike.brand);  // marin
+		console.log(bike.ebike()); // this is ebike 
+
+		console.log(boat);
+		console.log(boat.brand);
+		console.log(boat.eboat());
+
+		// after inheritance
+		console.log(bike.vancar());  // marin
+		console.log(bike.color);  // this is red
+
+		console.log(vehicle.vancar());	// this is vancar
+		console.log(vehicle.color);   // black
+
+		// => Polymorphism
+		const vehicles = [
+			new Bike('margin','red'),
+			new Boat('sea ray','green')
+		];
+
+		for(let vehicle of vehicles){
+			console.log(vehicle.vancar());
+		}
+
+
+	</script>
+</body>
+
+</html>

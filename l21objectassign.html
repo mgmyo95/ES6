@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Object Assign</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		const frontend = {
+			design : function(){
+				console.log("Frontend Web Developer");
+			}
+		};
+
+		const backend = {
+			unit : function(){
+				console.log("Backend Web Developer");
+			}
+		};
+
+		const database = {
+			store : function(){
+				console.log("Database System");
+			}
+		};
+
+		const server = {
+			cloud : function(){
+				console.log("Cloud Computing System");
+			}
+		};
+
+		// => Method 1 
+		// Object.assign(object,);
+		const obj1 = Object.assign({},frontend,backend,database);
+		console.log(obj1);
+
+		function Personone(){
+
+		}
+
+		Object.assign(Personone.prototype,frontend,backend);
+
+		function Persontwo(){
+
+		}
+
+		Object.assign(Persontwo.prototype,frontend,backend,database);
+
+		const p1 = new Personone();
+		const p2 = new Persontwo();
+
+		console.log(p1);
+		console.log(p2);
+
+		function objfun(obj,...methods){
+			// console.log(methods);
+			// console.log(...methods);
+			Object.assign(obj.prototype,...methods);
+		}
+	
+		function Personthree(){
+
+		}
+
+		objfun(Personthree,frontend,backend,database,server);
+
+		const p3 = new Personthree();
+		console.log(p3);
+
+	</script>
+</body>
+
+</html>

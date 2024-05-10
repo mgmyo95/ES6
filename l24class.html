@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Class</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// => Constructor Function 
+		function Student(name){
+			this.name = name;
+			this.subjects = function(){
+				return "Myanmar,English,Math";
+			}
+		}
+
+		const obj1 = new Student('aung aung');
+		console.log(obj1);
+		console.log(obj1.name);
+		console.log(obj1.subjects()); 
+
+		// => Class 
+		class Employee{
+			constructor(name){
+				this.name = name;
+				this.codes = function(){
+					return "PHP,Laravel,React";
+				}
+			}
+
+			// Instance Method 
+			salary = (amount,currency)=>{
+				return `${amount} ${currency} pre month;`;
+			}
+
+			// Instance Method 
+			contact(){
+				return "No.1, Myittar st, Mandalay";
+			}
+		}
+
+		const obj2 = new Employee('aye aye');
+		console.log(obj2);
+		console.log(obj2.name);
+		console.log(obj2.codes());
+
+		console.log(obj2.salary(500,'USD'));
+		console.log(obj2.contact());
+
+		// 9CS 
+		
+
+	</script>
+</body>
+
+</html>

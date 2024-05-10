@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Apply Method</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// => apply(null,array);
+		// console.log(Math.max(10,20,30)); // 30
+		// console.log(Math.max([10,20,30]));  // NaN
+
+		const numbers = [5,6,7,8,9];
+		const getmax = Math.max.apply(null,numbers);  // 9
+		console.log(getmax);
+
+		const getmin = Math.min.apply(null,numbers);
+		console.log(getmin);
+
+		const arr1 = ["a","b","c"];
+		const arr2 = [1,2,3];
+		arr1.push.apply(arr1,arr2);  // zero setting pyan cha
+		console.log(arr1);  //  ['a', 'b', 'c', 1, 2, 3] 
+
+		const names = ["aung aung","Kyaw Kyaw","zaw zaw"];
+		const ages =  [20,21,22];
+		names.push(...ages);
+
+		console.log(names);  // ['aung aung', 'Kyaw Kyaw', 'zaw zaw', 20, 21, 22]
+
+
+		
+		
+
+	</script>
+</body>
+
+</html>

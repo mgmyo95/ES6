@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Class Inheritance</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// => Class Inheritance (Note : Extending data and methods from class)
+
+		class Person{
+			constructor(firstname,lastname,city){
+				this.firstname = firstname;
+				this.lastname = lastname;
+				this.location = city;
+			}
+
+			getfullname = (title)=>{
+				return `${title}.${this.firstname} ${this.lastname}`;
+			}
+		}
+
+		class Position extends Person{
+			jobtitle = title=>{
+				return `${title}`;
+			}
+		}
+
+		const obj1 = new Person("Aung","Tun Tun","Yangon");
+		console.log(obj1);
+		console.log(obj1.firstname,obj1.lastname); // Aung Tun Tun
+		console.log(obj1.location);  // Yangon
+
+		const obj2 = new Position("Yu Yu","Aye","Mandalay");
+		console.log(obj2);
+		console.log(obj2.firstname,obj1.lastname); // Yu Yu Aye
+		console.log(obj2.location);  // Mandalay
+		console.log(obj2.jobtitle("Manager")); // Manager
+
+
+		class Car{
+			constructor(brand,color){
+				this.brand = brand;
+				this.color = color;
+			}
+		}
+
+		Car.prototype.summerize = function(){
+			return `Brand is ${this.brand} and color is ${this.color}`;
+		}
+
+		const obj3 = new Car("toyota","white");
+		console.log(obj3);
+		console.log(obj3.brand,obj3.color); // toyota , white 
+		console.log(obj3.summerize());
+
+		
+
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Hoisting</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// Hoisting is concert
+
+		myfunone();
+		// => Function Declaration
+		function myfunone(){
+			console.log("my fun one");
+		}
+		myfunone();
+
+		// myfuntwo();  // Error , Cannot access 'myfuntwo' before initialization
+
+		// => Function Expression 
+		const myfuntwo = function(){
+			console.log("my fun two");
+		}
+		myfuntwo();
+
+		// class ka declare lote pi mh use lot ya mhr
+		
+		// => Class Declaration 
+		// const seasonobj = new Seasonone();
+		// console.log(seasonobj);	// Error , Cannot access 'Seasonone' before initialization
+		class Seasonone{
+			constructor(){
+				this.info = "this is season one";
+			}
+		}
+
+		const seasonobj = new Seasonone();
+		console.log(seasonobj);	
+
+		// => Class Expression 
+		// const seasonobj2 = new Seasontwo();
+		// console.log(seasonobj2);  // Error , Cannot access 'Seasontwo' before initialization
+
+		const Seasontwo = class{
+			constructor(){
+				this.info = "this is season two";
+			}
+		}
+
+		// const seasonobj2 = new Seasontwo();
+		// console.log(seasonobj2);
+
+
+	</script>
+</body>
+
+</html>

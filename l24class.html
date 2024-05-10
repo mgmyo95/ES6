@@ -53,7 +53,36 @@
 		console.log(obj2.contact());
 
 		// 9CS 
-		
+
+		class Persons{
+			constructor(firstname,lastname,city){
+				this.firstname = firstname;
+				this.lastname = lastname;
+				this.address = city;
+			}
+
+			// Instance Method 
+			getfullname = (title)=>{
+				return `${title} ${this.firstname} ${this.lastname}`;
+			}
+
+		}
+
+		const obj3 = new Persons("Aung","Kyaw Kyaw","Yangon");
+		console.log(obj3);
+		console.log(obj3.firstname,obj3.lastname,obj3.address);
+		console.log(obj3.getfullname("Mr"));
+
+		const obj4 = new Persons("Nu Nu","Aye",["Bago","Mandalay"]);
+		console.log(obj4);
+		console.log(obj4.firstname,obj4.lastname);  // Nu Nu Aye 
+		console.log(obj4.address);
+		console.log(obj4.address[0]);  //Bago 
+		console.log(obj4.address[1]);  // Mandalay
+		console.log(obj4["address"][0]); // Bago 
+		console.log(obj4["address"][1]); // Mandalay
+		console.log(obj4.getfullname("Ms")); // Ms Nu Nu Aye
+		 
 
 	</script>
 </body>

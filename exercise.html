@@ -86,44 +86,7 @@
 
   <script type="text/javascript">
 
-   // => Private Properties 
-   // Constructor Function 
-
-   function Mobile(brand){
-    this.brand = brand;
-
-    let price = {pro:1000,promax:1500};
-
-    let colors = function(){
-      return "All colors are same price";
-    }
-
-    this.like = function(){
-      let question = "Should i choose rosegold";
-
-      console.log(`I love ${this.brand} . because i can spend USD ${price.pro} for new phone. BTW , ${colors()} ! ${question}`);
-    }
-
-    this.getprice = function(){
-      return price;
-    }
-
-    Object.defineProperty(this,'colors',{
-      get : function(){
-        return colors();
-      }
-    })
-
-   }
-
-   const getobj = new Mobile("Mi");
-   console.log(getobj);
-
-   console.log(getobj.brand);
-   console.log(getobj.like());
-
-   console.log(getobj.getprice());
-   console.log(getobj.colors);
+  
 
 
   </script>

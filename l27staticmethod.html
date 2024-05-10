@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Static Method</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		
+		class Phone{
+			constructor(brand){
+				this.brand = brand;
+			}
+
+			// Instance Method
+			madeby(country){
+				return `Made by ${country}`;
+			}
+
+			// Static Method 
+			static price(total){
+				return `Grand total is USD ${total}`;
+			}
+
+			// Static Method
+			static setbrand(val){
+				return new Phone(val);
+			}
+
+		}
+
+		const obj1 = new Phone("iPhone");
+		console.log(obj1);
+		console.log(obj1.brand);
+		console.log(obj1.madeby("US")); // made by us 
+		// console.log(obj1.price(1000)); // Error ,  obj1.price is not a function
+
+		const obj2 = new Phone("Mi");
+		console.log(obj2);
+		console.log(obj2.brand);
+		console.log(obj2.madeby("China")); // made by China 
+
+		const obj3 = Phone.setbrand("Sony");
+		console.log(obj3);
+		console.log(obj2.brand);
+		console.log(obj2.madeby("Japan")); // made by Japan 
+		
+
+		// 10ST
+
+
+	</script>
+</body>
+
+</html>

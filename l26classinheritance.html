@@ -59,7 +59,40 @@
 		console.log(obj3.brand,obj3.color); // toyota , white 
 		console.log(obj3.summerize());
 
-		
+		// => Super Constructor 
+		class Phone{
+			constructor(brand){
+				this.brand = brand;
+			}
+
+			madeby(val){
+				return `${val} made`;
+			}
+		}
+
+		class Mobile extends Phone{
+
+			constructor(brand,network,price){
+				super(brand);
+				this.network = network;
+				this.price = price;
+
+			}
+
+			color(val){
+				return `${val} color`;
+			}
+		}
+
+		const obj4 = new Mobile("sony","5G","USD 2000");
+		console.log(obj4);
+		console.log(obj4.brand); // Sony
+		console.log(obj4.madeby("Japan"));  // japan made 
+		console.log(obj4.color("Titanium")); // Titanium color 
+
+		console.log(obj4.network);
+		console.log(obj4.price);
+
 
 
 	</script>

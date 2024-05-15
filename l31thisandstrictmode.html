@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>This Keyword and strict Mode</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+	
+		// strict mode 	
+		class Phone{
+			brand = function(){
+				console.log(this);
+			}
+
+			color(){
+				console.log(this);
+			}
+		}
+
+		const obj1 = new Phone();
+		console.log(obj1); // Phone {brand: ƒ} 
+		
+
+		// Method call 
+		obj1.brand(); // Phone {brand: ƒ} 
+		obj1.color(); // Phone {brand: ƒ} 
+
+		// function call (Now this is no loger pointer out to global object)
+		const getbrand = obj1.brand;
+		getbrand();  // undefined
+
+		const getcolor = obj1.color;
+		getcolor();
+
+
+		
+		
+
+
+	</script>
+</body>
+
+</html>

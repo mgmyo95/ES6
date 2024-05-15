@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Private Member with weakmap</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// weakmap = object
+		// Method 1 
+		const _brand = new WeakMap();
+		const _network = new WeakMap();
+		const _color = new WeakMap();
+
+		class Phone{
+			constructor(brand,network){
+				// => public properties 
+				// this.brand = brand;
+
+				// => private properties 
+				_brand.set(this,brand);
+				_network.set(this,network);
+
+				// => private method 
+				// undefined , can't use reg function 
+				// _color.set(this,function(){
+				// 	return(this);
+				// });
+
+				_color.set(this,()=>{
+					return(this);
+				})
+			}
+
+			// => public method 
+			getbrandname(){
+				return _brand.get(this);
+			}
+
+			getphonenetwork(){
+				return _network.get(this);
+			}
+
+			getcolorcode(){
+				return _color.get(this)();
+			}
+		}
+
+		const obj1 = new Phone("iPhone","5G");
+		console.log(obj1);
+		console.log(obj1.brand);  // undefined
+
+		console.log(obj1.getbrandname());  // iPhone 
+		console.log(obj1.getphonenetwork());  // 5G 
+
+		console.log(obj1.getcolorcode()); // 
+
+
+		// => Method 2 
+		const privateprops = new WeakMap();
+		
+		class Mobile{
+			constructor(brand,network){
+				privateprops.set(this,{
+					// => private properties 
+					brand:brand,
+					network:network,
+
+					// => private mehtod 
+					color:()=>{
+						return this;
+					}
+				});
+			}
+
+			// => public method 
+			getbrandname(){
+				return privateprops.get(this).brand;
+			}
+
+			getphonenetwork(){
+				return privateprops.get(this).network;
+			}
+
+			getcolorcode(){
+				return privateprops.get(this).color();
+			}
+
+
+		}
+
+		const obj2 = new Mobile("Nokia","4G");
+		console.log(obj2);  // Mobile{} 
+
+		console.log(obj2.getbrandname());  // Nokia 
+		console.log(obj2.getphonenetwork());  // 4G 
+		console.log(obj2.getcolorcode());
+
+
+	</script>
+</body>
+
+</html>

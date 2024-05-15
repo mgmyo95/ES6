@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>This Keyword and usestrict</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// use strict ka global object ko restrict lote 
+		"use strict";
+		
+		const Phone = function(){
+			this.brand = function(){
+				console.log(this);
+			}
+		}
+
+		const obj1 = new Phone();
+		console.log(obj1); // Phone {brand: ƒ} 
+
+		// Method call 
+		obj1.brand(); // Phone {brand: ƒ} 
+
+		// function call (Now this is no loger pointer out to global object)
+		const getbrand = obj1.brand;
+		getbrand();  // undefined
+
+
+		
+		
+
+
+	</script>
+</body>
+
+</html>

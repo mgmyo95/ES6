@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Method Overiting</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		
+		class Student{
+			getname(){
+				console.log("Aung Aung");
+			}
+		}
+
+		class Staff extends Student{
+			getname(){
+				return `Mr.Aung Aung`;
+			}
+		}
+
+		const obj1 = new Staff();
+		console.log(obj1);
+		console.log(obj1.getname()); // Mr.Aung Aung
+
+		const obj2 = new Student();
+		console.log(obj2);
+		console.log(obj2.getname()); // Aung Aung
+
+		class Boss{
+			getname(){
+				console.log("Aye Aye");
+			}
+		}
+
+		class Employeer extends Boss{
+			getname(){
+				super.getname();
+				return `Mr.Aye Aye`;
+			}
+		}
+
+		const obj3 = new Boss();
+		console.log(obj3);
+		console.log(obj3.getname()); //Aye Aye
+
+		const obj4 = new Employeer();
+		console.log(obj4);  
+		console.log(obj4.getname()); // Mr.Aye Aye
+
+
+		
+		
+
+		
+	
+
+
+	</script>
+</body>
+
+</html>

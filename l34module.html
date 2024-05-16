@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Modules</title>
+</head>
+
+<body>
+
+
+
+	<!-- <script type="text/javascript">
+
+	
+		const _brand = new WeakMap();
+		const _network = new WeakMap();
+		const _color = new WeakMap();
+
+		class Phone{
+			constructor(brand,network){
+				// => public properties 
+				// this.brand = brand;
+
+				// => private properties 
+				_brand.set(this,brand);
+				_network.set(this,network);
+
+				
+				_color.set(this,()=>{
+					return(this);
+				})
+			}
+
+			// => public method 
+			getbrandname(){
+				return _brand.get(this);
+			}
+
+			getphonenetwork(){
+				return _network.get(this);
+			}
+
+			getcolorcode(){
+				return _color.get(this)();
+			}
+		}
+
+		const obj1 = new Phone("iPhone","5G");
+		console.log(obj1);
+		console.log(obj1.getbrandname());  // iPhone 
+		console.log(obj1.getphonenetwork());  // 5G 
+		console.log(obj1.getcolorcode()); 
+
+		console.log(_brand.get(obj1));	  // iPhone
+		console.log(_network.get(obj1));  // 5G 
+		console.log(_color.get(obj1)());  // Phone {}
+
+
+		
+
+
+	</script> -->
+
+	<script src="./l34app.js" type="module"></script>
+
+</body>
+
+</html>
+
+
+<!-- => Modules 
+Note :: No modules in ES5 
+AMD (Asynchronous Modules Definitions) , Browser Application 
+*CommonJs        	Node.js 
+UMD (Universal Module Definitions) , Browser / Node.js 
+*ES6 Module  		Browser 
+
+Note :: we just need to forecast CommonJs(Node.js) and ES6 Module (Browser) -->
+
+<!-- 
+=> ES6 Tools 
+Note :: When you use modern javascript 6 ! we need 2 kinds of tools 
+1. Transpiler 
+2. Bundler
+
+1 . Transpiler (Translator + Compiler)
+Modern -> BABLE -> ES6 
+
+Note :: BABLE is popular for modern javascript 
+
+2. Bundler (Combining all javascript files to single file) , It's can removed whitespace,comment 
+.js .js .js .js .js -> WEBPACK -> .js 
+
+-->

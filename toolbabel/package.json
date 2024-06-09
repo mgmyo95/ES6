@@ -1,0 +1,21 @@
+{
+  "name": "toolbabel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build" : "babel index.js -o output/index.js",
+    "watch" : "babel index.js -o output/index.js --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.24.5",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5"
+  },
+  "babel" : {
+    "presets" : ["@babel/preset-env"]
+  }
+}

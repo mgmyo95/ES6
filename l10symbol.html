@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Symbol</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// const ONSTATE = 'on';
+		// const OFFSTATE = 'off';
+
+		const feature1 = 'feature1';
+		const feature2 = 'feature2';
+
+		const car = {
+			brand : 'Toyota',
+			madeby : 'Japan',
+			model : 'Toyota Crown 2012',
+			[feature1] : 'cruise control',
+			[feature2] : 'air conditioner',
+			state : 'on',
+			speed : 100,
+			turnon : function(){
+				this.state = 'on'
+			},
+			turnoff(){
+				this.state = 'off'
+			},
+			accelerate(){
+				if(this.state === 'on'){
+					this.speed += 10;
+				}	
+			}
+		};
+
+		console.log(car);  // {brand: 'Toyota', madeby: 'Japan', model: 'Toyota Crown 2012', 
+								//feature1: 'cruise control', feature2: 'air conditioner', …}
+
+								// only one feature , so one feature in missing 
+
+		car.accelerate();
+		console.log(car);
+
+
+		// => Symbol
+		const mysymbol = Symbol();
+		const yoursymbol = Symbol("This is your symbol");
+
+		console.log(mysymbol);	// Symbol();
+		console.log(typeof mysymbol);	// symbol
+
+		console.log(yoursymbol);	// Symbol(This is your symbol)
+		console.log(typeof yoursymbol);	// symbol
+		console.log(yoursymbol.toString());
+
+		// Note :: Symbol is unique  (Symbol will be create new unique value)
+
+		const symbol1 = Symbol();
+		const symbol2 = Symbol();
+		console.log(symbol1 === symbol1);   // true 
+		console.log(symbol1 === symbol2);   // false 
+
+
+		const symbol3 = Symbol('hello');
+		const symbol4 = Symbol('hello');
+		console.log(symbol3 === symbol3);   // true 
+		console.log(symbol1 === symbol4);   // false 
+
+
+		const ONSTATE = 'on';
+		const OFFSTATE = 'off';
+
+		const action1 = Symbol('feature');
+		const action2 = Symbol('feature');
+
+		const vehicle = {
+			brand : 'Toyota',
+			madeby : 'Japan',
+			model : 'Toyota Crown 2012',
+			[feature1] : 'cruise control',
+			[feature2] : 'air conditioner',
+			state : ONSTATE,
+			speed : 100,
+			turnon : function(){
+				this.state = ONSTATE
+			},
+			turnoff(){
+				this.state = OFFSTATE
+			},
+			accelerate(){
+				if(this.state === ONSTATE){
+					this.speed += 10;
+				}	
+			}
+		};
+
+		console.log(vehicle);  // {brand: 'Toyota', madeby: 'Japan', model: 'Toyota Crown 2012', 
+								//feature1: 'cruise control', feature2: 'air conditioner', …}
+
+								// only one feature , so one feature in missing 
+
+		car.accelerate();
+		console.log(vehicle);
+
+		console.log(Object.keys(vehicle));	//  ['brand', 'madeby', 'model', 'feature1', 		'feature2', 'state', 'speed', 'turnon', 'turnoff', 'accelerate']
+											// Note :: missing symbol properties name 
+
+		
+		console.log(Object.getOwnPropertyNames(vehicle)); // ['brand', 'madeby', 'model', 'feature1', 'feature2', 'state', 'speed', 'turnon', 'turnoff', 'accelerate']
+															// Note :: missing symbol properties name 
+
+		for(const key in vehicle){
+			console.log(key);		// Note :: missing symbol properties name 
+		};
+
+		console.log(Object.getOwnPropertySymbols(vehicle)); // 2 [Symbol(feature),Symbol(feature)]
+
+
+		// => Symbol.iterator
+		console.log(Symbol.iterator);	// Symbol(Symbol.iterator)
+		console.log(typeof Symbol.iterator);	// Symbol 
+
+		const colors = ['red','green','blue'];
+		console.log(colors);
+		console.log(colors[0]);	// red
+		console.log(colors[1]);	// green
+		console.log(colors[2]);	// blue
+		console.log(colors[3]);	// undefined
+
+		for(const value of colors){
+			console.log(value);
+		}
+
+		console.log(colors);
+		console.log(colors.entries());		//Array Iterator {}  // note : just for array
+		console.log(colors[Symbol.iterator]());		//Array Iterator {} 
+
+		const paint = colors[Symbol.iterator]();
+		// console.log(paint.next());		//{value: 'red', done: false}
+		// console.log(paint.next());	
+		// console.log(paint.next());	
+		// console.log(paint.next());		// {value: 'undefined', done: true}
+
+		//console.log(paint.next().value);  // red
+		//console.log(paint.next().value);  // green
+		//console.log(paint.next().value);  // blue
+		//console.log(paint.next().value);  // undefined  
+
+
+
+
+		let iteration = paint.next();
+		
+		while(!iteration.done){
+			console.warn(iteration.value);
+			iteration = paint.next();
+		}
+
+
+		// create a new object by custom iterator
+		const customobj1 = {
+			[Symbol.iterator] : function*(){
+				for(let x = 0 ; x < 5 ; x++){
+					yield x; // 1 to 4 
+				}
+			}
+		};
+
+		// const result1 = customobj.entries();
+		// console.log(result1);		// Error : customobj1.entries is a function , can't use entries() in object 
+
+		const result1 = customobj1[Symbol.iterator]();
+		console.log(result1);		// customobj1 {<suspended>}
+
+		console.log(result1.next());	//{value: 0, done: false}
+		console.log(result1.next());	//{value: 1, done: false}
+		console.log(result1.next());	//{value: 2, done: false}
+		console.log(result1.next());	//{value: 3, done: false}
+		console.log(result1.next());	//{value: 4, done: false}
+		console.log(result1.next());	//{value: undefined, done: true}
+
+		for(const y of customobj1){
+			console.log(y);
+		}
+
+		console.log(...customobj1);		// 0 1 2 3 4
+
+
+
+		const customobj2 = {
+			*[Symbol.iterator](){
+				for(let x = 0 ; x < 5 ; x++){
+					yield x; // 1 to 4 
+				}
+			}
+		};
+
+		// const result1 = customobj.entries();
+		// console.log(result1);		// Error : customobj1.entries is a function , can't use entries() in object 
+
+		const result2 = customobj1[Symbol.iterator]();
+		console.log(result1);		// customobj1 {<suspended>}
+
+		console.log(result2.next());	//{value: 0, done: false}
+		console.log(result2.next());	//{value: 1, done: false}
+		console.log(result2.next());	//{value: 2, done: false}
+		console.log(result2.next());	//{value: 3, done: false}
+		console.log(result2.next());	//{value: 4, done: false}
+		console.log(result2.next());	//{value: undefined, done: true}
+
+		for(const y of customobj2){
+			console.log(y);
+		}
+
+		console.log(...customobj2);		// 0 1 2 3 4
+
+		
+
+
+
+
+	</script>
+</body>
+
+</html>
+

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Promise with list url</title>
+</head>
+
+<body>
+
+
+
+	<script type="text/javascript">
+
+		// url = Uniform Resource Locator 
+
+		// const urls = [
+		// 	"https://jsonplaceholder.typicode.com/users",
+		// 	"https://jsonplaceholder.typicode.com/posts",
+		// 	"https://jsonplaceholder.typicode.com/comments"
+		// ];
+
+		// Promise.all(urls.map(url=>{
+		// 	return fetch(url).then(response=>response.json());
+		// })).then(results=>{
+		// 	console.log(results);
+
+		// 	console.log(results[0]);
+		// 	console.log(results[1]);
+		// 	console.log(results[2]);
+		// }).catch(err=>console.log("Error = " , err))
+		// .finally(()=>console.log('I am working'));
+
+
+		// => using async & await 
+
+		// uri = Uniform Resource Identifier
+
+		const uris = [
+			"https://jsonplaceholder.typicode.com/users",
+			"https://jsonplaceholder.typicode.com/posts",
+			"https://jsonplaceholder.typicode.com/comments"
+		];
+
+		const getdatas = async function () {
+			const [users, posts, comments] = await Promise.all(uris.map(uri => fetch(uri).then(response => response.json())));
+
+			console.warn(users);
+			console.log(posts);
+			console.log(comments);
+		};
+
+		getdatas();
+
+
+
+		const getinfos = async function () {
+			// const [users, posts, comments] = await Promise.all(uris.map(uri =>{
+			// 	return fetch(uri).then(response=>response.json());
+			// }));
+
+			const [users, posts, comments] = await Promise.all(uris.map(async function(uri){
+				const response = await fetch(uri);
+				return response.json();	
+			}));
+
+			console.warn(users);
+			console.log(posts);
+			console.log(comments);
+		};
+
+		getinfos();
+
+		// async nt await ka parent and child pl ya tl
+
+		// => using async & await with try catch 
+
+		const routes = [
+			"https://jsonplaceholder.typicode.com/users",
+			"https://jsonplaceholder.typicode.com/posts",
+			"https://jsonplaceholder.typicode.com/comments"
+		];
+
+		async function getresults(){
+			try{
+				const [users,posts,comments] = await Promise.all(routes.map(route=>fetch(route).then(response=>response.json())));
+
+				console.warn(users);
+				console.log(posts);
+				console.log(comments);
+
+			}catch(err){
+				console.log("Error = ",err);
+			}
+		}
+
+		getresults();
+
+
+		const getvalues = async function(){
+			try{
+				const [users,posts,comments] = await Promise.all(routes.map(async route=>{
+					const response = await fetch(route);
+					return response.json();
+				}));
+
+				console.error(users);
+				console.log(posts);
+				console.log(comments);
+
+			}catch(err){
+				console.log("Error = ",err);
+			}
+		}
+
+		getvalues();
+
+		const getawesomes = async function(){
+
+			const promisesbyarrays = routes.map(route=>fetch(route));
+			// console.log(promisesbyarrays) // [Promise, Promise, Promise]
+
+			for await(let response of promisesbyarrays){
+				const datas = await response.json();
+				console.warn(datas);
+			}
+
+		}
+
+		getawesomes(); 
+
+		// 30AC 
+
+	</script>
+</body>
+
+</html>
+
+<!-- => Synchronous (Single Threaded)
+// statement 1
+// statement 2 --------------- database
+// statement 3 
+// statement 4 --------------- database
+// statement 5 -->
+
+<!-- => Asynchronous (Single Threaded)
+// statement 1
+// statement 2--------------- database
+// statement 3 					-
+// statement 4 					-
+// statement 5 					-
+
+callback ---------------------- 
+
+-->
